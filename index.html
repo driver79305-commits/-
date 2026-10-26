@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>مَتِين - MATEEN</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2C5E3B">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<script>try{if(JSON.parse(localStorage.getItem('theme'))==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<style>
+:root{--bg:#FDFBF7;--tx:#262626;--g:#2C5E3B;--cd:#fff;--bd:#e6e1d6;--sh:0 6px 24px rgba(0,0,0,.06);--mu:#6b7280}
+.dark{--bg:#121814;--tx:#eef3ef;--g:#4e9a64;--cd:#1a241e;--bd:#2b3b31;--sh:none;--mu:#9fb2a6}
+body{background:var(--bg);color:var(--tx);font-family:Tajawal,sans-serif;min-height:100vh;transition:background-color .25s,color .25s}
+h1,h2,button,.num,.ttl{font-family:Cairo,sans-serif}
+button{cursor:pointer;color:inherit}
+.cd{background:var(--cd);border:1px solid var(--bd);border-radius:16px;box-shadow:var(--sh);transition:background-color .25s,border-color .25s}
+.bt{background:var(--g);color:#fff;border-radius:12px;padding:.65rem 1rem;font-weight:700}
+.bt.rd{background:#dc2626}.bt.bk{background:#000;border:1px solid #333}
+.bo{border:1px solid var(--bd);border-radius:12px;padding:.65rem 1rem;background:transparent}
+.in{display:block;width:100%;margin-top:.35rem;padding:.55rem .7rem;border:1px solid var(--bd);border-radius:10px;background:var(--bg);color:var(--tx);font:400 1rem Tajawal,sans-serif}
+textarea.in{resize:none;overflow:hidden;min-height:2.6rem}
+.in:focus,button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--g);outline-offset:2px}
+.fl{display:block;font-weight:600;font-size:.9rem}
+.q{display:none;color:#dc2626;margin-inline-start:.4rem}
+.err{color:#dc2626;font-size:.85rem;min-height:1.2rem;margin-top:.3rem}
+.ttl{font-weight:700;font-size:1.2rem;color:var(--g);margin-bottom:1rem}
+.pl{white-space:pre-line;line-height:2;font-size:.95rem}
+.row{display:block;width:100%;text-align:start;padding:.8rem 1rem;border:1px solid var(--bd);border-radius:12px;background:var(--cd)}
+.th{padding:.3rem .8rem;border:1px solid var(--bd);border-radius:9px;font-size:.9rem}
+.th.on{background:var(--g);color:#fff;border-color:var(--g)}
+.tg{flex:none;width:46px;height:26px;border-radius:99px;background:#9ca3af;position:relative;transition:background .2s}
+.tg i{position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:inset-inline-start .2s}
+.tg.on{background:var(--g)}.tg.on i{inset-inline-start:23px}
+.mb{width:42px;height:42px;display:flex;flex-direction:column;justify-content:center;gap:5px;padding:0 9px}
+.mb i{height:3px;border-radius:2px;background:var(--g)}
+.chk{flex:none;width:26px;height:26px;border:2px solid var(--g);border-radius:8px;display:flex;align-items:center;justify-content:center}
+.chk.on{background:var(--g)}.chk.on::after{content:"✓";color:#fff;font-size:16px;font-weight:700}
+.dn .flex-1{text-decoration:line-through;opacity:.6}
+.pb{height:10px;border-radius:9px;background:var(--bd);overflow:hidden}
+.pb i{display:block;height:100%;background:var(--g);transition:width .3s}
+.lg{display:inline-flex;flex-direction:column;color:var(--g);font-family:Cairo,sans-serif}
+.lg b{font-weight:700;line-height:1.55}
+.lg small{display:flex;justify-content:space-between;direction:ltr;font-size:.3em;font-weight:600;line-height:1}
+.nv{display:block;width:100%;text-align:start;padding:.55rem .8rem;border-radius:10px;font-size:.95rem}
+.nv.on{background:color-mix(in srgb,var(--g) 15%,transparent);color:var(--g);font-weight:700}
+.cdn{padding:.5rem 0;border-radius:8px}.cdn:disabled{opacity:.3}.cdn.on{background:var(--g);color:#fff}
+#ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none}
+.app-modal{position:fixed}
+.mo{left:50%;top:50%;transform:translate(-50%,-50%);width:min(92vw,28rem);max-height:86vh;overflow:auto;padding:1.25rem}
+#dr{top:0;bottom:0;right:0;width:18rem;max-width:85vw;display:flex;flex-direction:column;padding:1.25rem;border-radius:16px 0 0 16px;transform:translateX(105%);transition:transform .25s}
+#dr.on{transform:none}
+.wl{position:fixed;inset:0;z-index:100;display:none;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center;background:var(--bg);transition:opacity .25s}
+#ts{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:200;background:var(--g);color:#fff;padding:.6rem 1.1rem;border-radius:12px;opacity:0;transition:opacity .25s;pointer-events:none}
+</style>
+</head>
+<body>
+<div id="app" class="max-w-xl mx-auto px-4 pt-4 pb-16">
+<section id="v1">
+ <div class="flex items-center justify-between"><button class="mb" aria-label="القائمة"><i></i><i></i><i></i></button><span id="date" class="num text-sm font-semibold"></span></div>
+ <div class="text-center mt-8">
+  <div dir="rtl" class="num inline-flex gap-3 text-5xl font-bold" style="color:var(--g)"><span id="c1">0</span><span>/</span><span id="c2">0</span></div>
+  <div class="pb mt-4"><i id="pb" style="width:0"></i></div>
+  <p id="none" class="mt-3 text-sm" style="color:var(--mu)" hidden>لا توجد مراجعات اليوم</p>
+ </div>
+ <h2 class="mt-8 mb-3 font-bold text-lg">مراجعات اليوم</h2>
+ <div id="list" class="space-y-3"></div>
+ <div id="dsec" class="mt-8" hidden><button id="dh" class="w-full text-start font-bold" aria-expanded="false"></button><div id="dlist" class="space-y-3 mt-3" hidden></div></div>
+</section>
+<section id="v2" hidden>
+ <div class="flex items-center justify-between"><button class="mb" aria-label="القائمة"><i></i><i></i><i></i></button><h1 class="text-xl font-bold" style="color:var(--g)">رصيد المحفوظ</h1></div>
+ <button id="add" class="bt w-full py-4 text-lg mt-6">+ إضافة مقدار جديد</button>
+ <div id="blist" class="space-y-3 mt-5"></div>
+</section>
+</div>
+<div id="ov"></div>
+<aside id="dr" class="app-modal cd" aria-label="القائمة الجانبية">
+ <div class="text-center" id="dlogo"></div>
+ <nav class="mt-6 space-y-1"><button class="nv" data-v="daily">الورد اليومي</button><button class="nv" data-v="bal">رصيد المحفوظ</button></nav>
+ <div class="flex-1"></div>
+ <div class="flex items-center justify-between pt-3" style="border-top:1px solid var(--bd)"><span id="aname" class="font-semibold truncate"></span><button id="gear" class="text-2xl" aria-label="الإعدادات">⚙</button></div>
+</aside>
+<div id="wl" class="wl">
+ <div id="wlogo"></div>
+ <p class="mt-6 max-w-sm leading-8">أهلاً بك. أدخل اسمك للبدء في تنظيم رحلتك في حفظ القرآن الكريم</p>
+ <input id="wn" class="in max-w-sm w-full text-center mt-5" placeholder="مثال: عبد الله، أو أبو عمر..." maxlength="40" autocomplete="off">
+ <p id="we" class="err"></p>
+ <button id="ws" class="bt w-full max-w-sm py-3 text-lg">ابدأ الآن</button>
+ <button id="wi" class="mt-4 underline text-sm" style="color:var(--g)">أو استيراد بيانات حساب سابق</button>
+ <input type="file" id="wf" accept=".json,application/json" hidden>
+</div>
+<div id="ts" role="status"></div>
+<script>
+const S="الفاتحة:7,البقرة:286,آل عمران:200,النساء:176,المائدة:120,الأنعام:165,الأعراف:206,الأنفال:75,التوبة:129,يونس:109,هود:123,يوسف:111,الرعد:43,إبراهيم:52,الحجر:99,النحل:128,الإسراء:111,الكهف:110,مريم:98,طه:135,الأنبياء:112,الحج:78,المؤمنون:118,النور:64,الفرقان:77,الشعراء:227,النمل:93,القصص:88,العنكبوت:69,الروم:60,لقمان:34,السجدة:30,الأحزاب:73,سبأ:54,فاطر:45,يس:83,الصافات:182,ص:88,الزمر:75,غافر:85,فصلت:54,الشورى:53,الزخرف:89,الدخان:59,الجاثية:37,الأحقاف:35,محمد:38,الفتح:29,الحجرات:18,ق:45,الذاريات:60,الطور:49,النجم:62,القمر:55,الرحمن:78,الواقعة:96,الحديد:29,المجادلة:22,الحشر:24,الممتحنة:13,الصف:14,الجمعة:11,المنافقون:11,التغابن:18,الطلاق:12,التحريم:12,الملك:30,القلم:52,الحاقة:52,المعارج:44,نوح:28,الجن:28,المزمل:20,المدثر:56,القيامة:40,الإنسان:31,المرسلات:50,النبأ:40,النازعات:46,عبس:42,التكوير:29,الانفطار:19,المطففين:36,الانشقاق:25,البروج:22,الطارق:17,الأعلى:19,الغاشية:26,الفجر:30,البلد:20,الشمس:15,الليل:21,الضحى:11,الشرح:8,التين:8,العلق:19,القدر:5,البينة:8,الزلزلة:8,العاديات:11,القارعة:11,التكاثر:8,العصر:3,الهمزة:9,الفيل:5,قريش:4,الماعون:7,الكوثر:3,الكافرون:6,النصر:3,المسد:5,الإخلاص:4,الفلق:5,الناس:6".split(',').map(x=>{const[n,c]=x.split(':');return{n,c:+c}});
+const DN=['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'],MN=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'],
+ST=['','المراجعة اليومية','المراجعة مرتين أسبوعياً','المراجعة مرة أسبوعياً','المراجعة مرة كل أسبوعين'],
+TIPS=`1- أتقن قراءة ونطق الآية قبل حفظها!
+2- لا تحفظ عدة آيات مع بعض، بل احفظ آية آية!
+- لغير الناطقين بالعربية: يفضل اعتماد نفس الطريقة ولكن على مستوى (كلمة كلمة).
+3- بعد حفظ آيتين، قم بتكرارهما معا موصولتين؛ لتحفظ ترتيبهما!
+4- اجعل تركيزك وجهد على إتقان الحفظ وليس على عدد الآيات والأوجه!
+4- قم بتثبيت ميعاد حفظك، وأجمل المواعيد الفجر!
+5- قم بمراجعة حفظك الجديد على مدار اليوم ولا تكتفِ بتكراره فقط في جلسة الحفظ!
+6- زيّن حفظك بالفهم، وتوّج مراجعتك بالعمل !!!`,
+ABOUT=`المراجعة ليست خطوة إضافية، بل هي جوهر الحفظ وسرّ ثباته!
+يقوم متين بتصنيف حفظك على ثلاث مراحل بناء على تاريخ الحفظ:
+المرحلة الأولى: (أول 20 يوماً بعد الحفظ، يتم مراجعة هذا المقدار يومياً مرة واحدة).
+المرحلة الثانية: (من اليوم الـ 21 إلى اليوم الـ 50، يتم مراجعة المحفوظ مرتين أسبوعيًا).
+المرحلة الثالثة: (بعد اليوم ال51، يتم مراجعة المحفوظ مرة أسبوعيًا، ليتم ختم القرآن مرة كل أسبوع).
+(تتوفر مرحلة رابعة اختيارية في الإعدادات تبدأ من اليوم الـ 101، ويُراجع فيها المحفوظ مرة كل أسبوعين).
+علماً أن يوم الجمعة مخصص فقط لمراجعة مقادير المرحلة الأولى (المراجعة اليومية)`;
+const $=s=>document.querySelector(s),mem={};
+const g=(k,d)=>{try{const v=localStorage.getItem(k);if(v!==null)return JSON.parse(v)}catch(e){}return k in mem?mem[k]:d};
+const sv=(k,v)=>{mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const p2=n=>String(n).padStart(2,'0'),fd=d=>`${d.getFullYear()}-${p2(d.getMonth()+1)}-${p2(d.getDate())}`,
+pd=s=>{const[a,b,c]=s.split('-').map(Number);return new Date(a,b-1,c)},td=()=>{const d=new Date();return new Date(d.getFullYear(),d.getMonth(),d.getDate())},
+u=d=>Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()),age=(a,t)=>Math.round((u(t)-u(pd(a.savedDate)))/864e5),
+fmt=s=>{const d=pd(s);return `${d.getDate()} ${MN[d.getMonth()]} ${d.getFullYear()}`},
+esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])),
+uid=()=>crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2);
+let acc=g('mateen_account',null),A=g('mateen_amounts',[]),P4=g('phase4Enabled',false),today=td(),view='daily',op=null,km=null,dopen=false,stack=[],hist=0,pend=0,rep=0;
+if(!Array.isArray(A))A=[];
+const DAYS3=[6,0,1,2,3,4],PAIRS=[[6,2],[0,3],[1,4]];
+const phaseOf=(a,t)=>{const n=age(a,t);return n<=20?1:n<=50?2:n<=100?3:P4?4:3};
+const srt=()=>A.map((a,i)=>[a,i]).sort((x,y)=>x[0].savedDate<y[0].savedDate?-1:x[0].savedDate>y[0].savedDate?1:x[1]-y[1]).map(x=>x[0]);
+function pick(a,ph){const c=Array(ph==2?3:ph==3?6:12).fill(0);A.forEach(x=>{if(x!==a&&x.phase===ph&&x.slot!=null)c[x.slot]++});return c.indexOf(Math.min(...c))}
+function sync(){srt().forEach(a=>{const ph=phaseOf(a,today);if(a.phase!==ph||(ph>1&&a.slot==null)){a.phase=ph;a.slot=ph>1?pick(a,ph):null}});sv('mateen_amounts',A)}
+function due(a,t){const n=age(a,t),d=t.getDay();if(n<=0)return false;if(a.phase===1)return true;if(d===5)return false;
+ if(a.phase===2)return PAIRS[a.slot].includes(d);if(a.phase===3)return DAYS3[a.slot]===d;
+ const w=Math.floor((u(t)-Date.UTC(2026,0,3))/6048e5);return DAYS3[a.slot%6]===d&&(a.slot<6?0:1)===(((w%2)+2)%2)}
+const ck=()=>'completions_'+fd(today),done=()=>g(ck(),[]);
+function clean(){const y=fd(new Date(today.getFullYear(),today.getMonth(),today.getDate()-1));try{Object.keys(localStorage).filter(k=>k.startsWith('completions_')&&k.slice(12)<y).forEach(k=>localStorage.removeItem(k))}catch(e){}}
+const logo=z=>`<div class="lg" style="font-size:${z}"><b>مَتِين</b><small>${[...'MATEEN'].map(c=>`<span>${c}</span>`).join('')}</small></div>`;
+const rng=a=>`${S[a.surah-1].n} <bdi dir="ltr">${a.fromAyah} - ${a.toAyah}</bdi>`;
+const head=(n,a,x='')=>`<div class="flex items-center gap-3"><span class="num font-bold w-8 text-center" style="color:var(--g)">${n}</span><span style="color:var(--bd)">|</span><span class="flex-1 font-medium">${rng(a)}</span>${x}</div>`;
+const det=a=>`<p><b>بداية الحفظ:</b> ${esc(a.startText)}</p><p><b>نهاية الحفظ:</b> ${esc(a.endText)}</p>`;
+const box=h=>`<div class="mt-3 pt-3 text-sm space-y-2 break-words" style="border-top:1px solid var(--bd)">${h}</div>`;
+function dcard(a,n,dn){const o=op===a.id;return `<div class="cd p-4 cursor-pointer ${dn?'dn':''}" data-id="${a.id}" role="button" tabindex="0" aria-expanded="${o}">${head(n,a,`<span class="chk ${dn?'on':''}" data-c="1" role="checkbox" aria-checked="${!!dn}" tabindex="0"></span>`)}${o?box(det(a)):''}</div>`}
+function bcard(a,n){const o=op===a.id;return `<div class="cd p-4 cursor-pointer" data-id="${a.id}" role="button" tabindex="0" aria-expanded="${o}">${head(n,a)}${o?box(det(a)+`<p><b>تاريخ الحفظ:</b> ${fmt(a.savedDate)}</p><p><b>الحالة:</b> ${ST[phaseOf(a,today)]}</p><div class="flex justify-end items-center gap-2">${km===a.id?'<button class="bo text-sm" data-act="e">تعديل</button><button class="bo text-sm" style="color:#dc2626" data-act="d">حذف</button>':''}<button class="text-xl px-2" data-k aria-label="خيارات">⋮</button></div>`):''}</div>`}
+function rDaily(){const L=srt(),n=new Map(L.map((a,i)=>[a.id,i+1])),d=done(),all=L.filter(a=>due(a,today)),dn=all.filter(a=>d.includes(a.id)),tt=all.filter(a=>!d.includes(a.id));
+ $('#date').textContent=`${DN[today.getDay()]}، ${today.getDate()} ${MN[today.getMonth()]} ${today.getFullYear()}`;
+ $('#c1').textContent=dn.length;$('#c2').textContent=all.length;$('#pb').style.width=(all.length?dn.length/all.length*100:0)+'%';$('#none').hidden=all.length>0;
+ $('#list').innerHTML=tt.map(a=>dcard(a,n.get(a.id),0)).join('');
+ $('#dsec').hidden=!dn.length;$('#dh').textContent=`تم إنجازه اليوم (${dn.length}) ${dopen?'▴':'▾'}`;$('#dh').setAttribute('aria-expanded',dopen);
+ $('#dlist').hidden=!dopen;$('#dlist').innerHTML=dn.map(a=>dcard(a,n.get(a.id),1)).join('')}
+function rBal(){const L=srt();$('#blist').innerHTML=L.length?L.map((a,i)=>bcard(a,i+1)).join(''):'<p class="text-center py-10" style="color:var(--mu)">لم تُسجَّل أي مقادير بعد</p>'}
+const rr=()=>view==='daily'?rDaily():rBal();
+function setView(v){view=v;op=null;km=null;$('#v1').hidden=v!=='daily';$('#v2').hidden=v!=='bal';document.querySelectorAll('.nv').forEach(b=>b.classList.toggle('on',b.dataset.v===v));rr()}
+/* الطبقات: النوافذ والقائمة الجانبية */
+const ovl=()=>{const o=$('#ov');o.style.display=stack.length?'block':'none';o.style.zIndex=49+2*stack.length};
+function layer(el,dr){if(rep)rep=0;else{hist++;history.pushState({m:1},'')}stack.push({el,dr});op=null;km=null;if(dr)el.classList.add('on');else document.body.appendChild(el);el.style.zIndex=50+2*stack.length;ovl();rr();setTimeout(()=>el.querySelector('input:not([readonly]),textarea,select,button')?.focus(),60)}
+function pop(){const l=stack.pop();if(!l)return;l.dr?l.el.classList.remove('on'):l.el.remove();ovl()}
+function closeTop(){if(!stack.length)return;if(hist>0){hist--;pend++;history.back()}pop()}
+function closeAll(){while(stack.length)pop();if(hist>0){history.go(-hist);pend++;hist=0}}
+function swap(){pop();rep=1}
+addEventListener('popstate',()=>{if(pend>0){pend--;return}if(stack.length){hist--;pop()}});
+addEventListener('keydown',e=>{const l=stack[stack.length-1];if(!l)return;if(e.key==='Escape'){closeTop();return}
+ if(e.key==='Tab'){const f=[...l.el.querySelectorAll('button,input,select,textarea,[tabindex="0"]')].filter(x=>!x.disabled&&!x.hidden&&x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];
+ if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}}});
+$('#ov').onclick=closeTop;
+function modal(h){const m=document.createElement('div');m.className='app-modal mo cd';m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');m.innerHTML=h;layer(m);return m}
+const btns=(o='تأكيد',n='إلغاء')=>`<div class="flex gap-3 mt-5"><button class="bt flex-1" data-ok>${o}</button><button class="bo flex-1" data-no>${n}</button></div>`;
+const dbtns=`<div class="flex gap-3 mt-4"><button class="bt rd flex-1" data-ok>حذف</button><button class="bt bk flex-1" data-no>إلغاء</button></div>`;
+const on=(m,ok)=>{m.onclick=e=>{const b=e.target.closest('button');if(!b)return;if('no' in b.dataset)closeTop();else if('ok' in b.dataset)ok()}};
+function toast(t){const e=$('#ts');e.textContent=t;e.style.opacity=1;clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.opacity=0,2800)}
+function setTheme(t){document.documentElement.classList.toggle('dark',t==='dark');sv('theme',t);$('meta[name=theme-color]').content=t==='dark'?'#121814':'#2C5E3B'}
+/* الإعدادات */
+function settings(){const dk=document.documentElement.classList.contains('dark');
+ const m=modal(`<h2 class="ttl">الإعدادات</h2><div class="space-y-3"><button class="row" data-a="acc">إدارة الحسابات</button>
+<div class="row flex items-center justify-between gap-3"><span>مظهر التطبيق</span><span class="flex gap-2"><button class="th ${dk?'':'on'}" data-t="light">نهاري</button><button class="th ${dk?'on':''}" data-t="dark">ليلي</button></span></div>
+<div class="row flex items-center justify-between gap-3"><span>تفعيل مرحلة المراجعة كل أسبوعين</span><button class="tg ${P4?'on':''}" role="switch" aria-checked="${P4}" aria-label="المرحلة الرابعة" data-p4><i></i></button></div>
+<button class="row" data-a="tips">نصائح للحفظ</button><button class="row" data-a="about">حول التطبيق</button></div><button class="bo w-full mt-4" data-no>إغلاق</button>`);
+ m.onclick=e=>{const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+  if('no' in d)closeTop();else if(d.t){setTheme(d.t);m.querySelectorAll('.th').forEach(x=>x.classList.toggle('on',x===b))}
+  else if('p4' in d){P4=!P4;sv('phase4Enabled',P4);b.classList.toggle('on',P4);b.setAttribute('aria-checked',P4);sync();rr()}
+  else if(d.a==='acc')accMenu();else if(d.a==='tips')info('نصائح للحفظ',TIPS);else if(d.a==='about')info('حول التطبيق',ABOUT,1)}}
+function info(t,x,sig){const m=modal(`<h2 class="ttl">${t}</h2><p class="pl">${x}</p>${sig?'<p class="text-center text-xs mt-5" style="color:var(--mu)">محمد زكي عبد الستار عصعوص</p>':''}<button class="bo w-full mt-4" data-no>إغلاق</button>`);on(m,()=>{})}
+function accMenu(){const m=modal(`<h2 class="ttl">إدارة الحسابات</h2><div class="space-y-3"><button class="row" data-a="n">تعديل الاسم</button><button class="row" data-a="x">تصدير البيانات</button><button class="row" style="color:#dc2626" data-a="d">حذف الحساب</button></div><button class="bo w-full mt-4" data-no>إغلاق</button>`);
+ m.onclick=e=>{const b=e.target.closest('button');if(!b)return;if('no' in b.dataset)closeTop();else if(b.dataset.a==='n')editName();else if(b.dataset.a==='x')exp();else if(b.dataset.a==='d')delAcc()}}
+function editName(){const m=modal(`<h2 class="ttl">تعديل الاسم</h2><input id="nn" class="in" maxlength="40" value="${esc(acc.name)}"><p class="err" id="ne"></p>${btns()}`),i=m.querySelector('#nn');
+ const go=()=>{const v=i.value.trim();if(!v){m.querySelector('#ne').textContent='الرجاء إدخال اسمك أولاً';return}acc.name=v;sv('mateen_account',acc);$('#aname').textContent=v;closeTop()};on(m,go);i.onkeydown=e=>{if(e.key==='Enter')go()}}
+function exp(){const o={schema:1,name:acc.name,settings:{theme:g('theme','light'),phase4Enabled:P4},amounts:A},a=document.createElement('a');
+ a.href=URL.createObjectURL(new Blob([JSON.stringify(o,null,2)],{type:'application/json'}));a.download=`mateen_backup_${fd(new Date())}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1e3);toast('تم تصدير البيانات')}
+function delAcc(){const m=modal(`<p class="font-semibold text-center py-3">هل أنت متأكد من مسح كافة البيانات؟</p>${dbtns}`);
+ on(m,()=>{try{Object.keys(localStorage).filter(k=>/^(mateen_|completions_|theme$|phase4Enabled$)/.test(k)).forEach(k=>localStorage.removeItem(k))}catch(e){}for(const k in mem)delete mem[k];
+  closeAll();acc=null;A=[];P4=false;today=td();dopen=false;document.documentElement.classList.remove('dark');setView('daily');welcome(false)})}
+function delc(a){const m=modal(`<p class="font-semibold text-center py-3">هل أنت متأكد من حذف هذا المقدار؟</p>${dbtns}`);on(m,()=>{A=A.filter(x=>x!==a);sync();closeTop();rr()})}
+/* نافذة الإضافة والتعديل */
+const opts=(a,b,ph)=>`<option value="">${ph}</option>`+Array.from({length:Math.max(0,b-a+1)},(_,i)=>`<option>${a+i}</option>`).join('');
+function form(a){
+ const m=modal(`<h2 class="ttl">${a?'تعديل المقدار':'إضافة مقدار جديد'}</h2><div class="space-y-4">
+<label class="fl">اسم السورة<b class="q" data-q="s">؟</b><select id="fs" class="in"><option value="">اختر السورة</option>${S.map((s,i)=>`<option value="${i+1}">${s.n}</option>`).join('')}</select></label>
+<div class="flex gap-3"><label class="fl flex-1">من الآية<b class="q" data-q="f">؟</b><select id="ff" class="in"></select></label><label class="fl flex-1">إلى الآية<b class="q" data-q="t">؟</b><select id="ft" class="in"></select></label></div>
+<label class="fl">بداية الحفظ<b class="q" data-q="a">؟</b><textarea id="fa" rows="1" class="in"></textarea></label>
+<label class="fl">نهاية الحفظ<b class="q" data-q="b">؟</b><textarea id="fb" rows="1" class="in"></textarea></label>
+<label class="fl">تاريخ الحفظ<b class="q" data-q="d">؟</b><input id="fdt" class="in" readonly placeholder="اختر التاريخ"></label></div>${btns()}`);
+ const q=s=>m.querySelector(s),fs=q('#fs'),ff=q('#ff'),ft=q('#ft'),fa=q('#fa'),fb=q('#fb'),fdt=q('#fdt');let dv=a?a.savedDate:'';
+ const cnt=()=>S[+fs.value-1]?.c||0,sd=()=>fdt.value=dv?fmt(dv):'',ar=t=>{t.style.height='auto';t.style.height=t.scrollHeight+'px'};
+ const optT=(f,t)=>{ft.innerHTML=opts(+f||1,cnt(),'إلى');ft.value=t&&+t>=(+f||1)?String(t):''};
+ const optF=(f,t)=>{ff.innerHTML=opts(1,cnt(),'من');ff.value=f?String(f):'';optT(f,t)};
+ optF();if(a){fs.value=a.surah;optF(a.fromAyah,a.toAyah);fa.value=a.startText;fb.value=a.endText;sd()}
+ fs.onchange=()=>optF();ff.onchange=()=>optT(ff.value,ft.value);fa.oninput=()=>ar(fa);fb.oninput=()=>ar(fb);fdt.onclick=()=>cal(dv,d=>{dv=d;sd()});setTimeout(()=>{ar(fa);ar(fb)},80);
+ on(m,()=>{const v={s:+fs.value,f:+ff.value,t:+ft.value,a:fa.value.trim(),b:fb.value.trim(),d:dv},bad={s:!v.s,f:!v.f,t:!v.t,a:!v.a,b:!v.b,d:!v.d};
+  m.querySelectorAll('[data-q]').forEach(x=>x.style.display=bad[x.dataset.q]?'inline':'none');if(Object.values(bad).some(Boolean))return;
+  if(a){const ch=a.savedDate!==v.d;Object.assign(a,{surah:v.s,fromAyah:v.f,toAyah:v.t,startText:v.a,endText:v.b,savedDate:v.d});if(ch){a.phase=0;a.slot=null}}
+  else A.push({id:uid(),surah:v.s,fromAyah:v.f,toAyah:v.t,startText:v.a,endText:v.b,savedDate:v.d,phase:0,slot:null});
+  sync();closeTop();rr()})}
+function cal(cur,cb){const t=today;let y=cur?+cur.slice(0,4):t.getFullYear(),mo=cur?+cur.slice(5,7)-1:t.getMonth();const Y=[];for(let i=t.getFullYear();i>=Math.min(1980,y);i--)Y.push(i);
+ const m=modal(`<div class="flex gap-2 mb-3"><select id="cm" class="in">${MN.map((x,i)=>`<option value="${i}">${x}</option>`).join('')}</select><select id="cy" class="in">${Y.map(i=>`<option>${i}</option>`).join('')}</select></div><div id="cg" class="grid grid-cols-7 gap-1 text-center"></div><button class="bo w-full mt-3" data-no>إلغاء</button>`),
+ cm=m.querySelector('#cm'),cy=m.querySelector('#cy'),cg=m.querySelector('#cg');
+ const draw=()=>{cm.value=mo;cy.value=y;const f=(new Date(y,mo,1).getDay()+1)%7,n=new Date(y,mo+1,0).getDate();
+  let h=[...'سحنثرخج'].map(x=>`<b class="text-xs" style="color:var(--mu)">${x}</b>`).join('')+'<i></i>'.repeat(f);
+  for(let d=1;d<=n;d++){const ds=`${y}-${p2(mo+1)}-${p2(d)}`;h+=`<button class="cdn${ds===cur?' on':''}" data-d="${ds}"${new Date(y,mo,d)>t?' disabled':''}>${d}</button>`}cg.innerHTML=h};
+ cm.onchange=()=>{mo=+cm.value;draw()};cy.onchange=()=>{y=+cy.value;draw()};
+ m.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if('no' in b.dataset)closeTop();else if(b.dataset.d&&!b.disabled){cb(b.dataset.d);closeTop()}});draw()}
+/* الترحيب والاستيراد */
+function welcome(imp){const w=$('#wl');w.style.display='flex';w.style.opacity=1;$('#wi').hidden=!imp;$('#wn').value='';$('#we').textContent='';$('#wlogo').innerHTML=logo('4rem')}
+function hideW(){const w=$('#wl');w.style.opacity=0;setTimeout(()=>{if(acc)w.style.display='none'},260)}
+function start(){clean();sync();$('#aname').textContent=acc.name;$('#dlogo').innerHTML=logo('2.6rem');setView('daily')}
+function create(){const v=$('#wn').value.trim();if(!v){$('#we').textContent='الرجاء إدخال اسمك أولاً';return}
+ acc={name:v,createdAt:new Date().toISOString(),schema:1};A=[];P4=false;sv('mateen_account',acc);sv('mateen_amounts',A);sv('phase4Enabled',false);sv('theme',g('theme','light'));start();hideW()}
+function check(o){if(!o||o.schema!==1)throw'إصدار الملف غير مدعوم';if(typeof o.name!=='string'||!o.name.trim())throw'اسم الحساب مفقود في الملف';if(!Array.isArray(o.amounts))throw'قائمة المقادير غير صالحة';
+ const ids=new Set(),t=td();return o.amounts.map((a,i)=>{const s=S[a.surah-1],ok=Number.isInteger(a.surah)&&s&&Number.isInteger(a.fromAyah)&&Number.isInteger(a.toAyah)&&a.fromAyah>=1&&a.toAyah<=s.c&&a.toAyah>=a.fromAyah&&/^\d{4}-\d{2}-\d{2}$/.test(a.savedDate)&&fd(pd(a.savedDate))===a.savedDate&&pd(a.savedDate)<=t&&typeof a.startText==='string'&&a.startText.trim()&&typeof a.endText==='string'&&a.endText.trim();
+  if(!ok)throw`المقدار رقم ${i+1} في الملف غير صالح`;let id=a.id;if(!id||ids.has(id))id=uid();ids.add(id);
+  return{id,surah:a.surah,fromAyah:a.fromAyah,toAyah:a.toAyah,startText:a.startText.trim(),endText:a.endText.trim(),savedDate:a.savedDate,phase:0,slot:null}})}
+$('#ws').onclick=create;$('#wn').onkeydown=e=>{if(e.key==='Enter')create()};$('#wi').onclick=()=>$('#wf').click();
+$('#wf').onchange=async e=>{const f=e.target.files[0];e.target.value='';if(!f)return;
+ try{const o=JSON.parse(await f.text()),L=check(o);acc={name:o.name.trim(),createdAt:new Date().toISOString(),schema:1};A=L;P4=!!(o.settings&&o.settings.phase4Enabled);
+  sv('mateen_account',acc);sv('phase4Enabled',P4);setTheme(o.settings&&o.settings.theme==='dark'?'dark':'light');start();hideW();toast(`تم استيراد ${L.length} مقدار`)}
+ catch(x){$('#we').textContent=typeof x==='string'?x:'الملف غير صالح، لم يتم حفظ أي شيء'}};
+/* الأحداث العامة */
+document.addEventListener('click',e=>{if(e.target.closest('.mb')&&!stack.some(l=>l.dr))layer($('#dr'),true)});
+document.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[role=button],[role=checkbox]')){e.preventDefault();e.target.click()}});
+document.querySelectorAll('.nv').forEach(b=>b.onclick=()=>{if(b.dataset.v!==view)setView(b.dataset.v);closeTop()});
+$('#gear').onclick=()=>{swap();settings()};
+$('#add').onclick=()=>form(null);
+$('#v1').addEventListener('click',e=>{if(e.target.closest('#dh')){dopen=!dopen;rDaily();return}const c=e.target.closest('[data-id]');if(!c)return;const id=c.dataset.id;
+ if(e.target.closest('[data-c]')){const d=done(),i=d.indexOf(id);i<0?d.push(id):d.splice(i,1);sv(ck(),d)}else op=op===id?null:id;rDaily()});
+$('#blist').addEventListener('click',e=>{const c=e.target.closest('[data-id]');if(!c)return;const a=A.find(x=>x.id===c.dataset.id);if(!a)return;
+ if(e.target.closest('[data-k]')){km=km===a.id?null:a.id;rBal();return}const b=e.target.closest('[data-act]');if(b){km=null;b.dataset.act==='e'?form(a):delc(a);return}
+ op=op===a.id?null:a.id;km=null;rBal()});
+function chk(){const n=td();if(fd(n)!==fd(today)&&acc){today=n;clean();sync();rr()}}
+setInterval(chk,30000);document.addEventListener('visibilitychange',chk);
+if('serviceWorker'in navigator&&/^https?:/.test(location.protocol))navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+if(acc&&typeof acc.name==='string')start();else{acc=null;welcome(true)}
+</script>
+</body>
+</html>
